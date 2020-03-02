@@ -22,13 +22,10 @@ line = pp.create_line(net, from_bus=bus2, to_bus=bus3, length_km=0.1, std_type="
 
 pp.runpp(net) #Power Flow
 print(net)
-
 print(net.res_bus)
-
 print(net.res_line)
-
 print(net.res_trafo)
-
 print(net.res_bus)
 
-print(net.res_bus.va_degree)
+
+net.res_bus.va_degree

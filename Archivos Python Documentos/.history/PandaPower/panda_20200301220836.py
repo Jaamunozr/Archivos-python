@@ -21,14 +21,8 @@ trafo = pp.create_transformer(net, hv_bus=bus1, lv_bus=bus2, std_type="0.4 MVA 2
 line = pp.create_line(net, from_bus=bus2, to_bus=bus3, length_km=0.1, std_type="NAYY 4x50 SE", name="Line")
 
 pp.runpp(net) #Power Flow
-print(net)
-
+pi
 print(net.res_bus)
-
 print(net.res_line)
-
 print(net.res_trafo)
-
 print(net.res_bus)
-
-print(net.res_bus.va_degree)

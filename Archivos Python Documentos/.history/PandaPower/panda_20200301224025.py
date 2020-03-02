@@ -26,9 +26,6 @@ print(net)
 print(net.res_bus)
 
 print(net.res_line)
-
 print(net.res_trafo)
-
 print(net.res_bus)
-
 print(net.res_bus.va_degree)
