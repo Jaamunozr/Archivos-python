@@ -1,6 +1,6 @@
 import os
 os.system('clear')
-"""
+
 
 #Función dentro de otra función
 def  comenzar_play__list(list):
@@ -16,7 +16,6 @@ list = ["tema 1", "tema 2", "tema 3", "tema 4"]
 comenzar_play__list(list)
 print (list)
 
-"""
 
 
 #Generadores

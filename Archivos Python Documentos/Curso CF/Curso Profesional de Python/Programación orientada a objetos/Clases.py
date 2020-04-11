@@ -1,6 +1,6 @@
 import os
 os.system('clear')
-'''
+
 class Usuario: #Creamos una clase
     pass
 
@@ -54,7 +54,7 @@ facilito.mostrar_username()
     
 codi.crear_nombre("Codigo")
 codi.mostrar_nombre()
-'''
+
 
 
 #METODO __init__-----------------------------------------------------------
