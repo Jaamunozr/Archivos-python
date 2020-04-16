@@ -1,0 +1,92 @@
+Aquí generamos nuestras pruebas para depurar codigos que estemos contruyendo
+
+ejm: La suma de 2 +2 es 4
+#Ingresamos como formula a evaluar
+>>> 2+2   
+4
+
+#Lo que esperamos que nos de como resultado
+******************************************************************************************************************
+En terminale ejecutamos lo siguiente: python3 -m doctest DocTesting.txt
+El programa no retornará nada si lo que esperamos está bien, en caso contrario nos arrojará un mensaje 
+donde se indica lo que realmente arrojó mi formula y cual fue el verdadero resultado vs el que esperabamos 
+NOTA: Tambien podemos ejecutar un arhivo .py y o que se ejecutará será lo que está en commillas triples: 
+""" Esto lo ejecutará doctest junto con lo que ponga de condicional despues"""
+Ej de este archivo:
+>>> 2+2
+5
+
+#Aquí nos arrojará un error 
+******************************************************************************************************************
+Tambien podemos evaluar funciones:
+#Declaramos primero nuestra función:
+>>> def suma(*args):
+...    return sum(args)
+
+
+Ahora miramos nuestro código de prueba:
+La suma de 10 + 20 + 30 debe dar 60
+>>> suma(10,20,30)
+60
+
+******************************************************************************************************************
+Tambien podemos importar módulos, por ejemplo importaremos del documento "Introduccion.py" un módulo:
+
+>>> from Introduccion import hola
+>>> hola.saludo("Hola mundo")
+Lo que usted dijitó fue:  Hola mundo
+
+
+
+******************************************************************************************************************
+Importando a la función Fibonacci:
+>>> from Introduccion import *
+>>> fibonacci(12)
+144
+
+Tambien se puede presentar como:
+>>> import Introduccion
+>>> Introduccion.fibonacci(12)
+144
+
+******************************************************************************************************************
+Si ejecutamos:
+python3 -m doctest -v DocTesting.t
+Vemos más detalles d elo que se ejecuta
+
+Tambien podriamos verificar nuestro código con la libreria "pytest", siempre y cuando las pruebas sean basicas,
+está libreria la debemos instalar
+
+Para pruebas más potentes tenemos la libreria "Unitest", es mucho más robusta.
+https://docs.python.org/3/library/unittest.html#assert-methods 
+Página oficial 
+
+******************************************************************************************************************
+
+Para Ver que lineas de código no se ejecutan y con el tiempo poder eliminarlas o depurar el código,
+debemos instalar la libreria "coverage" con el siguiente comando:
+
+$ pip3 install coverage
+
+Para ejecutar el análisis hacemos lo siguiente en a terminal:
+
+coverage report Introduccion.py 
+
+Esto visualizará la cobertura del código e incluira el roperte de que porcentaje de lineas de código
+fueron ejecutadas
+
+coverage run Introduccion.py 
+coverage report Introduccion.py 
+coverage report -m Introduccion.py 
+
+Si ejecutamos estas lineas, veremos que el código corre y ademas el procentaje de utilización despues de esto,
+por último la linea "-m" nos indicará que lineas no se ejecutaron
+
+coverage run Introduccion.py 
+coverage html Introduccion.py
+python3 -m http.server 
+
+Esto Genera un Archivo html que permite visualizar en el navegador Web gracias a un servidor las lineas
+de código ejecutadas, debemos visualizar que nuestro servidor por lo general ocupa el puerto 8000, en el 
+navegador escribimos "localhost:8000", damos click en "htmlcov" luego en nuestro archivo y miramos en 
+verde las lineas ejecutadas y en rojo las que no.
