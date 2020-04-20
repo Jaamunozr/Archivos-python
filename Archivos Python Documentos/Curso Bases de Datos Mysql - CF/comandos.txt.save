@@ -1,0 +1,45 @@
+from os import system as C
+
+C("clear")
+
+C("sudo systemctl status mysql")   
+Este comando nos permite ver si la base de datos esta activa
+
+#C("sudo systemctl enable mysql")
+#C("/etc/init.d/mysql restart")
+#En caso de que la base de datos no esté habilitada ejecutamos el anterior comando
+
+#C("sudo systemctl stop mysql")
+#C("/etc/init.d/mysql restart")
+#Este comando deshabilitamos la base de datos
+
+##C("sudo systemctl restart mysql")
+#Otra gran alternativa para reiniciar el servidor y no igresar contraseñas
+
+#C("sudo mysql -u root -p")
+#Nos pide contraseña de MySQL y luego ingresamos como administradores
+
+#C("sudo mysql -u root")
+# NO NOS pide contraseña de MySQL y luego ingresamos como administradores
+
+
+#C("quit;")
+#Comando para salir del sistema
+
+
+#C("sudo mysql -u root -p -h localhost")
+#Comando para ingresar
+
+Comados:
+
+
+system clear  
+#Borra la pantalla
+
+SET @nombre = "Codi";
+#Creacion de variables
+
+SET @nombre = "Codi";
+SET @nombre = "Codi";
+
+
