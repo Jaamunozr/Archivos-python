@@ -83,6 +83,93 @@ DROP DATABASE libreria_cf;
 USE libreria_cf;
 #Ahora trabajaremos sobre esa base de datos
 
+/* ¿Que tipo de entidades? Autores
+Nombre: Autores
+*/
+
+Nombre
+Genero
+Fecha de nacimiento
+País de origen
+
+columna y el tipo de dato
+--Generamos la tabla 
+CREATE TABLE autores(
+    autor_ID INT,#Las columnas se separan por "Comas" #--Estos campos no serán duplicados
+    nombre VARCHAR(25),  #Columna compuesta 
+    apellido VARCHAR(25),
+    genero CHAR(1),--M o F
+    Fecha_de_nacimiento DATE,
+    Pais_Origen VARCHAR(40)
+);
+
+
+--Se copia y se pega la creación de la anterior tabla SIN LOS COMENTARIOS
+
+
+ 
+Tipos de datos
+Abrir temario playlist_play
+
+En general, la mayoría de los servidores de base de datos nos permiten almacenar los
+mismo tipo de datos, como strings, fechas y número.
+
+En este post, listamos los tipos de datos que más utilizarás en tu día a día.
+Alfanuméricos
+
+    CHAR
+    VARCHAR
+
+En ambos casos nosotros debemos de especificar la longitud máxima que podrá 
+almacenar el campo. Opcionalmente podemos definir el charset que almacenará.
+
+varchar(20) character set utf8
+
+
+    Con MySQL nosotros podemos establecer el charset que usará la base de datos 
+    desde su creación create database nombre character set utf8;
+
+    NOTA: 
+    UTF-8 es un formato de codificación de caracteres Unicode e ISO 10646 que 
+    utiliza símbolos de longitud variable. UTF-8 fue creado por Robert C. Pike 
+    y Kenneth L. Thompson. Está definido como estándar por la RFC 3629 de la 
+    Internet Engineering Task Force.​
+
+Números enteros
+
+Tipo 	Rango
+Tinyint 	-128 a 127
+Smallint 	-32,768 a 32,767
+Mediumint 	−8,388,608 a 8,388,607
+Int 	−2,147,483,648 a 2,147,483,647
+Bigint 	−9,223,372,036,854,775,808 a 9,223,372,036,854,775,807
+
+Números flotantes
+
+Para los flotantes encontraremos dos tipos
+
+    Float
+    Double
+
+En ambos casos nosotros debemos de especificar la cantidad de dígitos que almacenará
+la columna antes y después del punto (p,s)
+
+precio FLOAT(3, 2)
+
+En este caso la columna podrá almacenar hasta tres dígitos como enteros y dos después
+del punto decimal.
+Por ejemplo 999.99
+
+
+Tiempo
+
+Tipo 	Formato default
+Date 	YYYY-MM-DD
+Datetime 	YYYY-MM-DD HH:MI:SS
+Timestamp 	YYYY-MM-DD HH:MI:SS
+Time 	HHH:MI:SS
+
+
 
 SHOW TABLES;
 #Muestra las tablas que tenemos creadas actualmente
@@ -93,3 +180,61 @@ SELECT DATABASE();
 DROP TABLE autores;
 #Eimina la tabla de nombre "autores", no se puede recuperar esa tabla
 
+SHOW COLUMNS FROM autores;
+#Obtener informacion de tablas, su definicion
++---------------------+-------------+------+-----+---------+-------+
+| Field               | Type        | Null | Key | Default | Extra |
++---------------------+-------------+------+-----+---------+-------+
+| autor_ID            | int(11)     | YES  |     | NULL    |       |
+| nombre              | varchar(25) | YES  |     | NULL    |       |
+| apellido            | varchar(25) | YES  |     | NULL    |       |
+| genero              | char(1)     | YES  |     | NULL    |       |
+| Fecha_de_nacimiento | date        | YES  |     | NULL    |       |
+| Pais_Origen         | varchar(40) | YES  |     | NULL    |       |
++---------------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+#Columnas y el tipo de datos que almacenan 
+
+#Tambien podemos hacer 
+DESC autores;
+
+
+
+#Creacion de tablas parecidas a otras:
+CREATE TABLE usuarios LIKE autores;
+#Copia la tabla autores y la nombra usuarios, visualizamos las tablas de la base y su descripcion (DESC)
+
+
+
+#Insertamos registros a una tabla 
+#Aquí no importa el orden de las columnas 
+INSERT INTO autores(autor_ID, nombre, apellido, genero, Fecha_de_nacimiento, Pais_Origen)
+VALUES(1,'Test autor','Test autor','M','2018-01-30','Colombia'); --Se colocan los valores para cada columna y sí importa el orden
+
+INSERT INTO autores(autor_ID, nombre)
+VALUES(1,'Test autor');
+
+
+#OBTENER TODOS LOS REGISTROS DE UNA TABLA 
+SELECT*FROM autores;
+
+
+#Para Insertar una sentencia con nuesos registro es usa lo siguiente:
+INSERT INTO autores(autor_ID, nombre, apellido, genero, Fecha_de_nacimiento, Pais_Origen)
+VALUES(1,'Test autor','Test autor','M','2018-01-30','Colombia'),
+      (2,'Test autor','Test autor','M','2018-01-30','Colombia'),
+      (3,'Test autor','Test autor','M','2018-01-30','Colombia'),
+      (4,'Test autor','Test autor','M','2018-01-30','Colombia');
+
+#A cada valor le corresponde una columna 
+
+
+#Ejemplo de como ejecutar archivos MYSQL en "sentencias.sl"
+
+
+#Para ejecutar un archivo "sentencias.sql" sin iniciar sesión desde la terminal:
+
+sudo mysql -u root -p </home/munoz/Documentos/Archivos-python/"Archivos Python Documentos"/"Curso Bases de Datos Mysql - CF"/sentencias.sql
+
+#Para ejecutar un archivo "sentencias.sql" iniciando sesión:
+SOURCE Documentos/Archivos-python/Archivos Python Documentos/Curso Bases de Datos Mysql - CF/sentencias.sql;
