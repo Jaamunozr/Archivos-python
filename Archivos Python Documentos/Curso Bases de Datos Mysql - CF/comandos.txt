@@ -238,3 +238,55 @@ sudo mysql -u root -p </home/munoz/Documentos/Archivos-python/"Archivos Python D
 
 #Para ejecutar un archivo "sentencias.sql" iniciando sesión:
 SOURCE Documentos/Archivos-python/Archivos Python Documentos/Curso Bases de Datos Mysql - CF/sentencias.sql;
+
+
+#Condicionar una sentencia 
+DROP DATABASE IF EXISTS libreria_cf; #sI EXISTE ESA LIBRERÍA, ELIMINELA
+
+
+#Consultas rápidas y ejecutar cualquier sentencia desde el terminal sin acceder a la base de datos:
+#En terminal:
+sudo mysql -u root -p libreria_cf -e "SELECT * FROM autores"
+
+
+#RESTRICCIONES
+#Se usan para que las tablas no almacenen datos corruptos o vasios
+ 
+
+
+CREATE TABLE IF NOT EXISTS autores(
+    autor_ID INT,
+    nombre VARCHAR(25) NOT NULL, #Primer restriccion, no deben ingresar valores nulos
+    apellido VARCHAR(25),
+    genero CHAR(1),
+    Fecha_de_nacimiento DATE,
+    Pais_Origen VARCHAR(40)
+);
+#Al querer insertar valores en nuestra tabla observamos que no esta mi "nombre" ni "apellido"
+INSERT INTO autores(autor_ID, genero, Fecha_de_nacimiento, Pais_Origen)
+VALUES(1,'M','2020-03-21','Colombia');
+#ESto retorna el siguiente error:
+ERROR 1364 (HY000): Field 'nombre' doesn't have a default value
+#Lo que nos indica que no posee el valor que se debe ingresar por defecto
+
+
+#Para agregar valores y que estos NO SE PUEDAN REPETIR DESPUES, agregaos "UNIQUE" al final del comando
+seudonimo VARCHAR(50) UNIQUE,
+
+#Cuando quiero agregar una nueva fila con los mismos datos, por ejemplo
+INSERT INTO autores(autor_ID, nombre, apellido,seudonimo ,genero, Fecha_de_nacimiento, Pais_Origen)
+VALUES(10,'Javier','Muñoz',"Javi M",'M','1993-12-19','Colombia');
+#Me mostrará lo siguiente 
+ERROR 1062 (23000): Duplicate entry 'Javi M' for key 'seudonimo'
+#Ese Dato ya fue agregado, pero solo mirará el dato que está en la columna "seudonimo" y ese no debe estar repetido
+
+
+
+#Valores por defecto y fecha de ingreso de un dato
+fecha_Creación DATETIME DEFAULT current_timestamp
+#Luego de ingresar los datos y posteriormente otro dato, todos se guardarán con l afecha y hora del momento, si y solo si no se ingresa otro dato.
+INSERT INTO autores(autor_ID, nombre, apellido,seudonimo ,genero, Fecha_de_nacimiento, Pais_Origen, Fecha_Creación)
+VALUES(10,'Javier',"Perez","Javi P",'M','1993-12-19','Colombia', NOW()), #Comando "NOW()" me permite ver la fecha y hora del momento
+      (10,'Andres',"Romero","And R",'M','1993-12-19','Colombia',"2020-01-01 00:00:00")#Ajustamos la fecha al momento que deseamos
+;
+SELECT * FROM autores;
